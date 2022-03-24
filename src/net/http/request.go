@@ -16,6 +16,7 @@ import (
 	"fmt"
 	"io"
 	"io/ioutil"
+	"log"
 	"mime"
 	"mime/multipart"
 	"net"
@@ -572,6 +573,7 @@ func (r *Request) write(w io.Writer, usingProxy bool, extraHeaders Header, waitF
 		ruri = r.URL.Scheme + "://" + host + ruri
 	} else if r.Method == "CONNECT" && r.URL.Path == "" {
 		// CONNECT requests normally give just the host and port, not a full URL.
+		log.Print("******************************")
 		ruri = host
 		if r.URL.Opaque != "" {
 			ruri = r.URL.Opaque
